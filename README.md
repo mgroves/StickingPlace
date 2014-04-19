@@ -23,7 +23,7 @@ WebHelpers
 ----------
 Helpers for ASP.NET / ASP.NET MVC
 
-* __HttpExtensions::SetAuthCookie__: On the surface, it seems like Forms Auth only lets you put a string (username) into a cookie. You can put arbitrary objects in there, but you have to jump through some extra hoops to do it. SetAuthCookie jumps through the hoops.
+* __HttpExtensions::SetAuthCookie__: On the surface, it seems like Forms Auth only lets you put a string (username) into the auth cookie. You can put arbitrary objects in there, but you have to jump through some extra hoops to do it. SetAuthCookie jumps through the hoops.
 * __HttpExtensions::GetAuthCookie__: Get the arbitrary object back out of the Forms Auth cookie without all the hoop jumping.
 * __ModelStateDictionaryExtensions::GetAllErrors__: A convenience extension to walk through the whole MVC ModelState errors tree. Good for unit testing sometimes too.
 * __HtmlHelperExtensions::IsSelected__: In an ASP.NET View layout page, I will often have a bunch of nav links that need to be highlighted when the controller is "active". For instance, on a menu I have 3 links: "Home", "Invoices", "Locations", each going to an action in their respective controllers. When an action in the "Users" controller is executed, I want the "Users" link to be visually highlighted by putting a CSS class on the link. To make this easy, I'll use the IsSelected extension like below. ReSharper and/or Visual Studio may not be happy with it, but it's valid Razor. It assumes a default CSS class of "active", but you can pass in another one.
@@ -35,14 +35,14 @@ Helpers for ASP.NET / ASP.NET MVC
 </ul>
 ```
 * __HtmlHelperExtensions::StateDropDownListFor, ProvicesDropDownListFor, TerritoriesDropDownListFor, StatesAndTerritoriesDropDownListFor, StatesAndProvincesDropDownListFor, StatesAndProvincesAndTerritoriesDropDownListFor__: MVC Helpers to show dropdowns for U.S. States, Canadian provinces, and U.S. territories, and various permuations. Otherwise, it works just like Html.DropDownListFor. No offense intended to Canadians.
-* __StatesProvincesTerritories__: This is the source data used for StateDropDownListFor, broken up into States (which included Washington D.C.), Provinces, and Territories.
+* __StatesProvincesTerritories__: This is the source data used for all of the above, broken up into States (which included Washington D.C.), Provinces, and Territories.
 
 
 StringHelpers
 -------------
 Helpers for string manipulation
 
-* __StringExtensions::ToMD5__: Hase a string to an MD5 string. [You should probably not be using MD5 for anything involving important](http://www.zdnet.com/blog/security/md5-password-scrambler-no-longer-safe/12317), but for legacy/conversion reasons you may need to have this handy.
+* __StringExtensions::ToMD5__: Hash a string to an MD5 string. [You should probably not be using MD5 for anything involving important](http://www.zdnet.com/blog/security/md5-password-scrambler-no-longer-safe/12317), but for legacy/conversion reasons you may need to have this handy.
 
 Roadmap
 =======
