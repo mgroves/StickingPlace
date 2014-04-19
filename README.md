@@ -11,11 +11,11 @@ Sticking Place
 
 Sticking Place is yet another "junk drawer" C# library of useful extensions and helpers.
 
-TestHelpers
+SqlHelpers
 -----------
-Helpers here are meant for unit testing.
+Helpers for ADO.NET/SQL
 
-*  __SqlExceptionHelper__: Create SqlException objects with whatever message and error number you'd like. See SqlExceptionHelperTests for more information.
+*  __SqlExceptionHelper__: Create SqlException objects with whatever message and error number you'd like. See SqlExceptionHelperTests for more information. This should only be used for testing, I can't think of a good reason to use it otherwise.
 
 WebHelpers
 ----------
@@ -23,3 +23,10 @@ Helpers for ASP.NET
 
 * __HttpExtensions::SetAuthCookie__: On the surface, it seems like Forms Auth only lets you put a string (username) into a cookie. You can put arbitrary objects in there, but you have to jump through some extra hoops to do it. SetAuthCookie jumps through the hoops.
 * __HttpExtensions::GetAuthCookie__: Get the arbitrary object back out of the Forms Auth cookie without all the hoop jumping.
+* __ModelStateDictionaryExtensions::GetAllErrors__: A convenience extension to walk through the whole MVC ModelState errors tree. Good for unit testing sometimes too.
+
+StringHelpers
+-------------
+Helpers for string manipulation
+
+* __StringExtensions::ToMD5__: Encoded a string to an MD5 string. [You should probably not be using MD5 for anything involving important](http://www.zdnet.com/blog/security/md5-password-scrambler-no-longer-safe/12317), but for legacy/conversion reasons you may need to have this handy.

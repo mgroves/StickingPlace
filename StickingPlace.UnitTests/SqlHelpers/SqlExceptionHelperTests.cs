@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using StickingPlace.TestHelpers;
 
-namespace StickingPlace.UnitTests.TestHelpers
+namespace StickingPlace.UnitTests.SqlHelpers
 {
     [TestFixture]
     public class SqlExceptionHelperTests

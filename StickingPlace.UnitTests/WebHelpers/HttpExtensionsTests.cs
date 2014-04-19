@@ -66,7 +66,7 @@ namespace StickingPlace.UnitTests.WebHelpers
             public int TenantId { get; set; }
             public string TenantName { get; set; }
 
-            // the code in Decode/Encode methods is essentially a mirror of the extension
+            // the code in Decode/Encode methods is essentially a mirror of the extensions under test
             // but that "mirror" is not necessary in real code, just for unit testing
             public static MyArbitraryClass Decode(HttpResponseBase mockHttpResponse)
             {

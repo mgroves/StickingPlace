@@ -51,8 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestHelpers\SqlExceptionHelperTests.cs" />
+    <Compile Include="SqlHelpers\SqlExceptionHelperTests.cs" />
+    <Compile Include="StringHelpers\StringExtensionsTests.cs" />
     <Compile Include="WebHelpers\HttpExtensionsTests.cs" />
+    <Compile Include="WebHelpers\ModelStateDictionaryExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
