@@ -36,6 +36,8 @@ Helpers for ASP.NET / ASP.NET MVC
 </ul>
 ```
 
+* __HtmlHelperExtensions::StateDropDownListFor, ProvicesDropDownListFor, TerritoriesDropDownListFor, StatesAndTerritoriesDropDownListFor, StatesAndProvincesDropDownListFor, StatesAndProvincesAndTerritoriesDropDownListFor__: MVC Helpers to show dropdowns for U.S. States, Canadian provinces, and U.S. territories, and various permuations. Otherwise, it works just like Html.DropDownListFor. No offense intended to Canadians.
+* __StatesProvincesTerritories__: This is the source data used for StateDropDownListFor, broken up into States (which included Washington D.C.), Provinces, and Territories.
 StringHelpers
 -------------
 Helpers for string manipulation

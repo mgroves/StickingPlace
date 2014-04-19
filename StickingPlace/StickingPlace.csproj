@@ -75,6 +75,7 @@
     <Compile Include="WebHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="WebHelpers\HttpExtensions.cs" />
     <Compile Include="WebHelpers\ModelStateDictionaryExtensions.cs" />
+    <Compile Include="WebHelpers\StatesProvincesTerritories.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
