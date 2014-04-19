@@ -60,6 +60,39 @@ namespace StickingPlace.UnitTests.WebHelpers
             Assert.That(arbObj.TenantName, Is.EqualTo(decodedArbObj.TenantName));
         }
 
+        [Test]
+        public void If_theres_no_auth_cookie_then_GetAuthCookie_will_return_null()
+        {
+            // mock the request base, and make sure Cookies is ready to go
+            var mockHttpRequest = Mock.Create<HttpRequestBase>();
+            Mock.Arrange(() => mockHttpRequest.Cookies).Returns(new HttpCookieCollection());
+
+            // pull the cookie out using the helper extension
+            var decodedArbObj = mockHttpRequest.GetAuthCookie<MyArbitraryClass>();
+
+            Assert.That(decodedArbObj, Is.Null);
+        }
+        
+        [Test]
+        public void If_a_null_cookie_is_put_in_for_some_reason_GetAuthCookie_will_return_null()
+        {
+            // create an arbitrary object
+            const string arbUsername = "aturing";
+            const bool rememberMe = true;
+
+            // mock the request base, and make sure Cookies is ready to go
+            var mockHttpRequest = Mock.Create<HttpRequestBase>();
+            Mock.Arrange(() => mockHttpRequest.Cookies).Returns(new HttpCookieCollection());
+
+            // stick the object into the cookie, which ASP.NET would normally do for us
+            MyArbitraryClass.Encode(mockHttpRequest, null, arbUsername, rememberMe);
+
+            // pull the cookie out using the helper extension
+            var decodedArbObj = mockHttpRequest.GetAuthCookie<MyArbitraryClass>();
+
+            Assert.That(decodedArbObj, Is.Null);
+        }
+
         public class MyArbitraryClass
         {
             public int UserId { get; set; }
@@ -89,11 +122,16 @@ namespace StickingPlace.UnitTests.WebHelpers
                 var ticket = FormsAuthentication.Decrypt(cookie.Value);
                 var json = new JavaScriptSerializer();
 
+                string jsonObj;
+                if (arbObj != null)
+                    jsonObj = json.Serialize(arbObj);
+                else
+                    return;
+
                 var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration,
-                    ticket.IsPersistent, json.Serialize(arbObj), ticket.CookiePath);
+                    ticket.IsPersistent, jsonObj, ticket.CookiePath);
                 var encTicket = FormsAuthentication.Encrypt(newTicket);
 
-                // Use existing cookie. Could create new one but would have to copy settings over...
                 cookie.Value = encTicket;
 
                 request.Cookies.Add(cookie);

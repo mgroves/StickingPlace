@@ -6,16 +6,24 @@ namespace StickingPlace.WebHelpers
 {
     public static class HttpExtensions
     {
-        public static void SetAuthCookie<T>(this HttpResponseBase responseBase, string name, bool rememberMe, T userData)
+        public static void SetAuthCookie<T>(this HttpResponseBase responseBase, string name, bool rememberMe, T userData) where T : class, new()
         {
+            string jsonObj;
+            if (userData != null)
+            {
+                var json = new JavaScriptSerializer();
+                jsonObj = json.Serialize(userData);
+            }
+            else
+                return;
+
             // create a default cookie and use its values to create a new one.
             var cookie = FormsAuthentication.GetAuthCookie(name, rememberMe);
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            var json = new JavaScriptSerializer();
 
             var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate,
                 ticket.Expiration,
-                ticket.IsPersistent, json.Serialize(userData), ticket.CookiePath);
+                ticket.IsPersistent, jsonObj, ticket.CookiePath);
             var encTicket = FormsAuthentication.Encrypt(newTicket);
 
             // reuse existing cookie
@@ -24,9 +32,8 @@ namespace StickingPlace.WebHelpers
             responseBase.Cookies.Add(cookie);
         }
 
-        public static T GetAuthCookie<T>(this HttpRequestBase requestBase)
+        public static T GetAuthCookie<T>(this HttpRequestBase requestBase) where T : class, new()
         {
-            var json = new JavaScriptSerializer();
             var cookie = requestBase.Cookies[FormsAuthentication.FormsCookieName];
 
             if (cookie == null)
@@ -34,8 +41,11 @@ namespace StickingPlace.WebHelpers
 
             var decrypted = FormsAuthentication.Decrypt(cookie.Value);
 
-            if (decrypted != null && !string.IsNullOrEmpty(decrypted.UserData))
+            if (decrypted != null && !string.IsNullOrEmpty(decrypted.UserData) && decrypted.UserData != "null")
+            {
+                var json = new JavaScriptSerializer();
                 return json.Deserialize<T>(decrypted.UserData);
+            }
             return default(T);
         }
     }
