@@ -1,10 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.UI.WebControls;
 using NUnit.Framework;
 using StickingPlace.WebHelpers;
 using Telerik.JustMock;
+using Telerik.JustMock.Helpers;
 
 namespace StickingPlace.UnitTests.WebHelpers
 {
@@ -47,6 +50,41 @@ namespace StickingPlace.UnitTests.WebHelpers
             Assert.That(isSelectedHtml, Is.EqualTo(" class=\"active\""));
         }
 
+        [Test]
+        public void ActionImage_creates_an_anchor_with_an_image_inside()
+        {
+            var viewContext = ArrangeViewContextRigamaroleSoUrlHelperWorks();
+            var html = new HtmlHelper(viewContext, new ViewPage());
+
+            var resultHtml = html.ActionImage("Index", "Test", "/Content/Images/foo.png", "click me!", new {id = 99}).ToHtmlString();
+
+            var expectedHtml = @"<a href=""/Test/Index/99""><img alt=""click me!"" src=""/Content/Images/foo.png"" /></a>";
+            Assert.That(resultHtml, Is.EqualTo(expectedHtml));
+
+            // cleanup the route(s) that were added for this test
+            RouteTable.Routes.Clear();
+        }
+
+        ViewContext ArrangeViewContextRigamaroleSoUrlHelperWorks()
+        {
+            RouteTable.Routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Test", action = "Index", id = UrlParameter.Optional }
+            );
+
+            var response = Mock.Create<HttpResponseBase>();
+            Mock.Arrange(() => response.ApplyAppPathModifier(Arg.AnyString)).Returns(p => p);
+
+            var context = Mock.Create<HttpContextBase>();
+            Mock.Arrange(() => context.Response).Returns(response);
+            var workerrequest = Mock.Create<HttpWorkerRequest>(Behavior.Loose);
+            Mock.Arrange(() => context.GetService(typeof(HttpWorkerRequest))).Returns(workerrequest);
+
+            var viewContext = new ViewContext();
+            viewContext.RequestContext = new RequestContext(context, new RouteData());
+            return viewContext;
+        }
 
         public class SomeModel
         {

@@ -16,6 +16,25 @@ namespace StickingPlace.WebHelpers
             return MvcHtmlString.Empty;
         }
 
+        public static MvcHtmlString ActionImage(this HtmlHelper html, string action, string controllerName, string imagePath, string alt, object routeValues = null)
+        {
+            var url = new UrlHelper(html.ViewContext.RequestContext);
+
+            // build the <img> tag
+            var imgBuilder = new TagBuilder("img");
+            imgBuilder.MergeAttribute("src", url.Content(imagePath));
+            imgBuilder.MergeAttribute("alt", alt);
+            string imgHtml = imgBuilder.ToString(TagRenderMode.SelfClosing);
+
+            // build the <a> tag
+            var anchorBuilder = new TagBuilder("a");
+            anchorBuilder.MergeAttribute("href", url.Action(action, controllerName, routeValues));
+            anchorBuilder.InnerHtml = imgHtml; // include the <img> tag inside
+            string anchorHtml = anchorBuilder.ToString(TagRenderMode.Normal);
+
+            return MvcHtmlString.Create(anchorHtml);
+        }
+
         public static MvcHtmlString StateDropDownListFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, string optionLabel = null, object htmlAttributes = null)
         {
             var stateList = StatesProvincesTerritories.StatesAndDC;

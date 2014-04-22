@@ -26,6 +26,7 @@ Helpers for ASP.NET / ASP.NET MVC
 * __HttpExtensions::SetAuthCookie__: On the surface, it seems like Forms Auth only lets you put a string (username) into the auth cookie. You can put arbitrary objects in there, but you have to jump through some extra hoops to do it. SetAuthCookie jumps through the hoops.
 * __HttpExtensions::GetAuthCookie__: Get the arbitrary object back out of the Forms Auth cookie without all the hoop jumping.
 * __ModelStateDictionaryExtensions::GetAllErrors__: A convenience extension to walk through the whole MVC ModelState errors tree. Good for unit testing sometimes too.
+* __HtmlHelperExtensions::ActionImage: A link with an image in it. You can specify routevalue and don't forget the alt!
 * __HtmlHelperExtensions::IsSelected__: In an ASP.NET View layout page, I will often have a bunch of nav links that need to be highlighted when the controller is "active". For instance, on a menu I have 3 links: "Home", "Invoices", "Locations", each going to an action in their respective controllers. When an action in the "Users" controller is executed, I want the "Users" link to be visually highlighted by putting a CSS class on the link. To make this easy, I'll use the IsSelected extension like below. ReSharper and/or Visual Studio may not be happy with it, but it's valid Razor. It assumes a default CSS class of "active", but you can pass in another one.
 ```
 <ul class="nav navbar-nav">
@@ -46,7 +47,8 @@ Helpers for string manipulation
 
 Roadmap
 =======
-I have some other mocking helpers that I use frequently with Telerik JustMock, but they aren't general enough (yet) to put in here.
+* There is a really hacky unit test for Html::ActionImage that I only *mostly* understand. It could use improvement. Unit test organization in general could use some improvement.
+* I have some other mocking helpers that I use frequently with Telerik JustMock, but they aren't general enough (yet) to put in here.
 
 >**Macbeth**: 
 >> Away, and mock the time with fairest show. 
