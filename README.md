@@ -44,6 +44,7 @@ StringHelpers
 Helpers for string manipulation
 
 * __StringExtensions::ToMD5__: Hash a string to an MD5 string. [You should probably not be using MD5 for anything involving important](http://www.zdnet.com/blog/security/md5-password-scrambler-no-longer-safe/12317), but for legacy/conversion reasons you may need to have this handy.
+* __StringExtensions::ToSHA256__: Hash a string to an SHA256 string (lowercase, no spaces or dashes).
 
 Roadmap
 =======

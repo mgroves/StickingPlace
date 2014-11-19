@@ -8,7 +8,7 @@ namespace StickingPlace.StringHelpers
     {
         public static string ToMD5(this string @this)
         {
-            if(string.IsNullOrEmpty(@this))
+            if (string.IsNullOrEmpty(@this))
                 throw new ArgumentException("String must not be null or empty.");
 
             var md5 = MD5.Create();
@@ -19,6 +19,20 @@ namespace StickingPlace.StringHelpers
             for (int i = 0; i < hash.Length; i++)
                 sb.Append(hash[i].ToString("x2"));
             return sb.ToString();
-        }         
+        }
+
+        public static string ToSHA256(this string @this)
+        {
+            if (string.IsNullOrEmpty(@this))
+                return @this;
+            using (var hash = new SHA256Managed())
+            {
+                var asBytes = Encoding.UTF8.GetBytes(@this);
+                var result = hash.ComputeHash(asBytes);
+                var resultString = BitConverter.ToString(result);
+                var resultStringLowerCaseNoDashes = resultString.Replace("-", "").ToLower();
+                return resultStringLowerCaseNoDashes;
+            }
+        }
     }
 }
