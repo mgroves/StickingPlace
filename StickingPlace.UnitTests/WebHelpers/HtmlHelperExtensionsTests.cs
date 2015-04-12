@@ -1,13 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Web.UI.WebControls;
 using NUnit.Framework;
-using StickingPlace.WebHelpers;
 using Telerik.JustMock;
-using Telerik.JustMock.Helpers;
 
 namespace StickingPlace.UnitTests.WebHelpers
 {

@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Reflection;
 
-namespace StickingPlace.TestHelpers
+namespace StickingPlace
 {
     public static class SqlExceptionHelper
     {

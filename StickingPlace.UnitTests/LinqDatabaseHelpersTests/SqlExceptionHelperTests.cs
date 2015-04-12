@@ -1,8 +1,7 @@
 ﻿using System.Data.SqlClient;
 using NUnit.Framework;
-using StickingPlace.TestHelpers;
 
-namespace StickingPlace.UnitTests.SqlHelpers
+namespace StickingPlace.UnitTests.LinqDatabaseHelpersTests
 {
     [TestFixture]
     public class SqlExceptionHelperTests

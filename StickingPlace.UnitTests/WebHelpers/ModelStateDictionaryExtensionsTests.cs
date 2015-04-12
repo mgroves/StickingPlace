@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.ModelBinding;
 using NUnit.Framework;
-using StickingPlace.WebHelpers;
 
 namespace StickingPlace.UnitTests.WebHelpers
 {

@@ -2,7 +2,7 @@
 using System.Web.Script.Serialization;
 using System.Web.Security;
 
-namespace StickingPlace.WebHelpers
+namespace StickingPlace
 {
     public static class HttpExtensions
     {

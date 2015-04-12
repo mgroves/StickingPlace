@@ -2,7 +2,6 @@
 using System.Web.Script.Serialization;
 using System.Web.Security;
 using NUnit.Framework;
-using StickingPlace.WebHelpers;
 using Telerik.JustMock;
 
 namespace StickingPlace.UnitTests.WebHelpers

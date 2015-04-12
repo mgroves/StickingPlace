@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.ModelBinding;
 
-namespace StickingPlace.WebHelpers
+namespace StickingPlace
 {
     public static class ModelStateDictionaryExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace StickingPlace.WebHelpers
+namespace StickingPlace
 {
     public static class StatesProvincesTerritories
     {

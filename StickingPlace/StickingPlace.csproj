@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LinqDatabaseHelpers\IQueryableExtensions.cs" />
+    <Compile Include="LinqDatabaseHelpers\PredicateBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelpers\StringExtensions.cs" />
     <Compile Include="TestHelpers\SqlExceptionHelper.cs" />

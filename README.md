@@ -46,6 +46,14 @@ Helpers for string manipulation
 * __StringExtensions::ToMD5__: Hash a string to an MD5 string. [You should probably not be using MD5 for anything involving important](http://www.zdnet.com/blog/security/md5-password-scrambler-no-longer-safe/12317), but for legacy/conversion reasons you may need to have this handy.
 * __StringExtensions::ToSHA256__: Hash a string to an SHA256 string (lowercase, no spaces or dashes).
 
+LinqDatabaseHepers
+------------------
+Helpers for Linq providers (e.g. for OR/Ms)
+
+* __IQueryableExtensions::OrderBy__: Order a collection by a fieldname, specified by a string (ascending)
+* __IQueryableExtensions::OrderByDescending__: Order a collection by a fieldname, specified by a string (descending)
+* __PredicateBuilder__: A fluent way to build predicates using AND and (especially) OR that isn't supported by normal Linq extensions.
+
 Roadmap
 =======
 * There is a really hacky unit test for Html::ActionImage that I only *mostly* understand. It could use improvement. Unit test organization in general could use some improvement.

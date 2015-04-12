@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using StickingPlace.StringHelpers;
 
 namespace StickingPlace.UnitTests.StringHelpers
 {
